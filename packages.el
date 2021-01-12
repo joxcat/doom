@@ -5,12 +5,45 @@
 ;; on the command line, then restart Emacs for the changes to take effect -- or
 ;; use 'M-x doom/reload'.
 
-(use-package lsp-mode
-  :hook (nim-mode . lsp)
-  :commands lsp)
-
 ;; lsp install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
+(package! evil-easymotion)
+(package! evil-snipe)
+(package! evil-commentary)
+(package! evil-indent-plus)
+
+;; Inspired by https://tecosaur.github.io/emacs-config/config.html#general-packages
+(package! rotate :pin "091b5ac...")
+(package! spray :pin "74d9dcfa...")
+
+(package! keycast :pin "b02892e...")
+(use-package! keycast
+  :commands keycast-mode
+  :config
+  (define-minor-mode keycast-mode
+    "Show current command and its key binding in the mode line."
+    :global t
+    (if keycast-mode
+        (progn
+          (add-hook 'pre-command-hook 'keycast-mode-line-update t)
+          (add-to-list 'global-mode-string '("" mode-line-keycast " ")))
+      (remove-hook 'pre-command-hook 'keycast-mode-line-update)
+      (setq global-mode-string (remove '("" mode-line-keycast " ") global-mode-string))))
+  (custom-set-faces!
+    '(keycast-command :inherit doom-modeline-debug
+                      :height 0.9)
+    '(keycast-key :inherit custom-modified
+                  :height 1.1
+                  :weight bold)))
+
+(package! magit-delta :recipe (:host github :repo "dandavison/magit-delta") :pin "fc4de96...")
+(package! info-colors :pin "47ee73c...")
+
+(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el")) :pin "a01e9ed..." :disable t)
+(use-package! vlf-setup
+  :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
+
+(unpin! org-mode)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
