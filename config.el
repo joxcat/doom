@@ -101,6 +101,7 @@
   (+ivy/switch-buffer))
 (setq +ivy-buffer-preview t)
 
+;; Rotate windows
 (map! :map evil-window-map
       "SPC" #'rotate-layout
       ;; Navigation
@@ -113,3 +114,10 @@
       "C-<down>"       #'+evil/window-move-down
       "C-<up>"         #'+evil/window-move-up
       "C-<right>"      #'+evil/window-move-right)
+
+(map!
+ (:leader
+  (:prefix "p"
+   :desc "RG for lifu <3"
+   :nv "G"
+   #'+ivy/project-search)))
