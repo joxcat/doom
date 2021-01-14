@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: unimplemented
+# uuid: +ts/unimplemented
+# key: uni
+# --
+public unimplemented(...params): void {
+    // TODO: Implement the thing that called me
+    console.warn('Unimplemented function called with params: ', params);
+}
