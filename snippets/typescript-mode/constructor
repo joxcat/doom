@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: constructor
+# uuid: +ts/constructor
+# key: cnstr
+# --
+constructor() {$1}$0
