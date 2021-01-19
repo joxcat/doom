@@ -115,9 +115,9 @@
       "C-<up>"         #'+evil/window-move-up
       "C-<right>"      #'+evil/window-move-right)
 
-(map!
- (:leader
-  (:prefix "p"
-   :desc "RG for lifu <3"
-   :nv "G"
-   #'+ivy/project-search)))
+;(map!
+ ;(:leader
+  ;(:prefix "p"
+   ;:desc "RG for lifu <3"
+   ;:nv "G"
+   ;#'+ivy/project-search)))
