@@ -12,8 +12,8 @@
 (package! evil-commentary)
 (package! evil-indent-plus)
 
-;; Vue setup
-(package! vue-mode)
+;; Multimode per buffer
+(package! polymode)
 
 ;; Inspired by https://tecosaur.github.io/emacs-config/config.html#general-packages
 (package! rotate :pin "091b5ac...")
