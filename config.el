@@ -75,6 +75,11 @@
   :custom
   (lsp-eslint-validate '(javascript javascriptreact typescript typescriptreact vue)))
 
+;; Verb conf
+(use-package org
+  :mode ("\\.org\\'" . org-mode)
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+
 ;; ANSI Colors in plain text
 (after! text-mode
   (add-hook! 'text-mode-hook

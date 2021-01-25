@@ -18,6 +18,9 @@
 ;; Nim in Org-mode
 (package! ob-nim)
 
+;; Verb http request
+(package! verb)
+
 ;; Inspired by https://tecosaur.github.io/emacs-config/config.html#general-packages
 (package! rotate :pin "091b5ac...")
 (package! spray :pin "74d9dcfa...")
