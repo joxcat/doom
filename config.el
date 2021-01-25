@@ -64,7 +64,8 @@
 ;; they are implemented.
 
 ;; Enable lsp for Nim
-(add-hook 'nim-mode-local-vars-hook #'lsp!)
+;(add-hook 'nim-mode-local-vars-hook #'lsp!)
+(add-hook 'nim-mode-hook #'lsp!)
 
 ;; ANSI Colors in plain text
 (after! text-mode
@@ -114,6 +115,23 @@
       "C-<down>"       #'+evil/window-move-down
       "C-<up>"         #'+evil/window-move-up
       "C-<right>"      #'+evil/window-move-right)
+
+;; Vue setup
+(use-package vue-mode
+  :config
+  (setq mmm-submode-decoration-level 0))
+
+(add-hook 'vue-mode-hook #'lsp!)
+(use-package lsp-mode
+  :custom
+  (lsp-vetur-format-options-tab-size 4))
+
+;; LSP improvements
+(with-eval-after-load 'lsp-mode
+  ;; enable log only for debug
+  ;(setq lsp-log-io nil)
+  ;; handle yasnippet externally
+  (setq lsp-enable-snippet nil))
 
 ;(map!
  ;(:leader
