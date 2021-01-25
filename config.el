@@ -66,6 +66,9 @@
 ;; Enable lsp for Nim
 ;(add-hook 'nim-mode-local-vars-hook #'lsp!)
 (add-hook 'nim-mode-hook #'lsp!)
+(org-babel-do-load-languages
+  'org-babel-load-languages
+  '((nim . t)))
 
 ;; ESLINT
 (use-package lsp-mode
