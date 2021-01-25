@@ -12,6 +12,9 @@
 (package! evil-commentary)
 (package! evil-indent-plus)
 
+;; Vue setup
+(package! vue-mode)
+
 ;; Inspired by https://tecosaur.github.io/emacs-config/config.html#general-packages
 (package! rotate :pin "091b5ac...")
 (package! spray :pin "74d9dcfa...")
@@ -44,10 +47,8 @@
   :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
 
 (unpin! org-mode)
-
-;; Vue setup
-(package! vue-mode)
-
+(unpin! lsp-mode)
+(unpin! nim-mode)
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/raxod502/straight.el#the-recipe-format
