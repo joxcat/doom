@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: userstory
+# uuid: +org/userstory
+# key: ustory
+# expand-env: ((yas-indent-line nil))
+# --
+
+#+begin_quote
+En tant que $1
+Je veux $2
+Parce que $3
+            -- $1
+#+end_quote
+$0

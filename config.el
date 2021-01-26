@@ -91,6 +91,7 @@
 ;;     ("=" (:background "maroon" :foreground "white"))
 ;;     ("~" (:background "deep sky blue" :foreground "MidnightBlue"))
 ;;     ("+" (:strike-through t))))
+(setq org-hide-block-startup t)
 
 ;; ANSI Colors in plain text
 (after! text-mode
