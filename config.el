@@ -80,6 +80,18 @@
   :mode ("\\.org\\'" . org-mode)
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
+;; Magit side by side
+(setq magit-ediff-dwim-show-on-hunks t)
+
+;; Org-mode conf
+;; (setq org-emphasis-alist
+;;   '(("*" (bold :foreground "Orange" ))
+;;     ("/" (italic :foreground "Green"))
+;;     ("_" underline)
+;;     ("=" (:background "maroon" :foreground "white"))
+;;     ("~" (:background "deep sky blue" :foreground "MidnightBlue"))
+;;     ("+" (:strike-through t))))
+
 ;; ANSI Colors in plain text
 (after! text-mode
   (add-hook! 'text-mode-hook
