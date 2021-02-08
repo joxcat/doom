@@ -54,7 +54,8 @@
 
 (unpin! org-mode)
 (unpin! lsp-mode)
-(unpin! go-mode)
+;; (unpin! go-mode)
+(unpin! rustic)
 ;; (unpin! nim-mode)
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:

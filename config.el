@@ -69,7 +69,7 @@
 ;; (org-babel-do-load-languages
 ;;   'org-babel-load-languages
 
-;; ESLINT
+;; LSP ESLINT / RUST
 (use-package lsp-mode
   :custom
   (lsp-eslint-validate '(javascript javascriptreact typescript typescriptreact vue)))
@@ -77,10 +77,37 @@
 ;; Verb conf
 (use-package org
   :mode ("\\.org\\'" . org-mode)
-  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+  :custom
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.6)
+  :config
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+(use-package lsp-ui
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil))
 
 ;; Magit side by side
 (setq magit-ediff-dwim-show-on-hunks t)
+
+;; RUUUST
+(use-package rustic
+  :bind (:map rustic-mode-map
+              ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-find-references)
+              ("C-c C-c l" . flycheck-list-errors)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c Q" . lsp-workspace-shutdown)
+              ("C-c C-c s" . lsp-rust-analyzer-status)))
+
+(defun rk/rustic-mode-hook ()
+  ;; so that run C-c C-c C-r works without having to confirm
+  (setq-local buffer-save-without-query t))
 
 ;; Org-mode conf
 ;; (setq org-emphasis-alist
