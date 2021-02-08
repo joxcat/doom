@@ -80,7 +80,7 @@
 
        :checkers
        (syntax +childframe)              ; tasing you for every semicolon you forget
-       ;; (spell +everywhere +aspell +enchant)             ; tasing you for misspelling mispelling
+       (spell +everywhere +aspell)             ; tasing you for misspelling mispelling
        ;; grammar           ; tasing grammar mistake every you make
 
        :tools
