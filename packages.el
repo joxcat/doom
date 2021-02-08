@@ -16,7 +16,7 @@
 (package! polymode)
 
 ;; Nim in Org-mode
-(package! ob-nim)
+;; (package! ob-nim)
 
 ;; Verb http request
 (package! verb)
@@ -54,7 +54,8 @@
 
 (unpin! org-mode)
 (unpin! lsp-mode)
-(unpin! nim-mode)
+(unpin! go-mode)
+;; (unpin! nim-mode)
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/raxod502/straight.el#the-recipe-format
