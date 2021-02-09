@@ -110,13 +110,13 @@
   (setq-local buffer-save-without-query t))
 
 ;; Org-mode conf
-;; (setq org-emphasis-alist
-;;   '(("*" (bold :foreground "Orange" ))
-;;     ("/" (italic :foreground "Green"))
-;;     ("_" underline)
-;;     ("=" (:background "maroon" :foreground "white"))
-;;     ("~" (:background "deep sky blue" :foreground "MidnightBlue"))
-;;     ("+" (:strike-through t))))
+(setq org-emphasis-alist
+  '(("*" (bold :foreground "brown1"))
+    ("/" (italic :foreground "gold"))
+    ("_" underline)
+    ("=" (:background "orange" :foreground "Black"))
+    ("~" (:foreground "RoyalBlue1"))
+    ("+" (:strike-through t :foreground "gray30"))))
 (setq org-hide-block-startup t)
 
 ;; ANSI Colors in plain text
