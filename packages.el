@@ -22,10 +22,10 @@
 (package! verb)
 
 ;; Inspired by https://tecosaur.github.io/emacs-config/config.html#general-packages
-(package! rotate :pin "091b5ac...")
-(package! spray :pin "74d9dcfa...")
+(package! rotate)
+(package! spray)
 
-(package! keycast :pin "b02892e...")
+(package! keycast)
 (use-package! keycast
   :commands keycast-mode
   :config
@@ -45,10 +45,10 @@
                   :height 1.1
                   :weight bold)))
 
-(package! magit-delta :recipe (:host github :repo "dandavison/magit-delta") :pin "fc4de96...")
-(package! info-colors :pin "47ee73c...")
+(package! magit-delta :recipe (:host github :repo "dandavison/magit-delta"))
+(package! info-colors)
 
-(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el")) :pin "a01e9ed..." :disable t)
+(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el")) :disable t)
 (use-package! vlf-setup
   :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
 
