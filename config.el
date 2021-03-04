@@ -22,7 +22,7 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-(setq doom-font (font-spec :family "Iosevka Custom" :size 15)
+(setq doom-font (font-spec :family "Iosevka Nerd Font" :size 15)
       doom-variable-pitch-font (font-spec :family "Iosevka Custom" :size 15)
       doom-big-font (font-spec :family "Iosevka Custom" :size 15))
 
