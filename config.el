@@ -129,6 +129,13 @@
       )
     )
   )
+(after! vlf-mode
+  (add-hook! 'vlf-mode-hook
+    (with-silent-modifications
+      (ansi-color-apply-on-region (point-min) (point-max))
+      )
+    )
+  )
 
 ;; Remove UTF-8 from modeline
 (defun doom-modeline-conditional-buffer-encoding ()

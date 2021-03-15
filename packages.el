@@ -48,9 +48,11 @@
 (package! magit-delta :recipe (:host github :repo "dandavison/magit-delta"))
 (package! info-colors)
 
-(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el")) :disable t)
-(use-package! vlf-setup
-  :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
+;; (package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el")) :disable t)
+;; (use-package! vlf-setup
+;;   :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
+
+(package! vlf :recipe (:host github :repo "m00natic/vlfi"))
 
 (unpin! org-mode)
 (unpin! lsp-mode)
