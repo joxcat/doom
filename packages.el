@@ -53,6 +53,7 @@
 ;;   :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
 
 (package! vlf :recipe (:host github :repo "m00natic/vlfi"))
+(package! elpy)
 
 (unpin! org-mode)
 (unpin! lsp-mode)
