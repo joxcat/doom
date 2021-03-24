@@ -77,18 +77,8 @@
 ;; Verb conf
 (use-package org
   :mode ("\\.org\\'" . org-mode)
-  :custom
-  (lsp-rust-analyzer-cargo-watch-command "clippy")
-  (lsp-eldoc-render-all t)
-  (lsp-idle-delay 0.6)
   :config
-  (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-(use-package lsp-ui
-  :custom
-  (lsp-ui-peek-always-show t)
-  (lsp-ui-sideline-show-hover t)
-  (lsp-ui-doc-enable nil))
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 ;; Magit side by side
 (setq magit-ediff-dwim-show-on-hunks t)
@@ -103,11 +93,41 @@
               ("C-c C-c r" . lsp-rename)
               ("C-c C-c q" . lsp-workspace-restart)
               ("C-c C-c Q" . lsp-workspace-shutdown)
-              ("C-c C-c s" . lsp-rust-analyzer-status)))
+              ("C-c C-c s" . lsp-rust-analyzer-status))
+  :config
+  ;; comment to disable rustfmt on save
+  (setq rustic-format-on-save t)
+  (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
 
 (defun rk/rustic-mode-hook ()
   ;; so that run C-c C-c C-r works without having to confirm
-  (setq-local buffer-save-without-query t))
+  (setq-local buffer-save-without-query t)
+  (setq-local lsp-ui-sideline-enable nil))
+
+(use-package lsp-mode
+  :commands lsp
+  :custom
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.6)
+  (lsp-rust-analyzer-server-display-inlay-hints t)
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil))
+
+(use-package company
+  :custom
+  (company-idle-delay 0.5))
+
+(use-package flycheck)
+
+(setq lsp-rust-analyzer-server-display-inlay-hints t)
 
 ;; Org-mode conf
 (setq org-emphasis-alist
@@ -183,86 +203,78 @@
   ;; handle yasnippet externally
   (setq lsp-enable-snippet nil))
 
-;(map!
- ;(:leader
-  ;(:prefix "p"
-   ;:desc "RG for lifu <3"
-   ;:nv "G"
-   ;#'+ivy/project-search)))
-
+;; Vue support using polymode
 (use-package polymode
-        :ensure t
-        :defer t
-        :hook (vue-mode . lsp-deferred)
-        :mode ("\\.vue\\'" . vue-mode)
-        :config
+  :defer t
+  :hook (vue-mode . lsp-deferred)
+  :mode ("\\.vue\\'" . vue-mode)
+  :config
 
 
-        (define-innermode poly-vue-template-innermode
-          :mode 'html-mode
-          :head-matcher "<[[:space:]]*template[[:space:]]*[[:space:]]*>"
-          :tail-matcher "</[[:space:]]*template[[:space:]]*[[:space:]]*>"
-          :head-mode 'host
-          :tail-mode 'host)
+  (define-innermode poly-vue-template-innermode
+    :mode 'html-mode
+    :head-matcher "<[[:space:]]*template[[:space:]]*[[:space:]]*>"
+    :tail-matcher "</[[:space:]]*template[[:space:]]*[[:space:]]*>"
+    :head-mode 'host
+    :tail-mode 'host)
 
-        (define-innermode poly-vue-script-innermode
-          :mode 'js-mode
-          :head-matcher "<[[:space:]]*script[[:space:]]*[[:space:]]*>"
-          :tail-matcher "</[[:space:]]*script[[:space:]]*[[:space:]]*>"
-          :head-mode 'host
-          :tail-mode 'host)
+  (define-innermode poly-vue-script-innermode
+    :mode 'js-mode
+    :head-matcher "<[[:space:]]*script[[:space:]]*[[:space:]]*>"
+    :tail-matcher "</[[:space:]]*script[[:space:]]*[[:space:]]*>"
+    :head-mode 'host
+    :tail-mode 'host)
 
-        (define-innermode poly-vue-typescript-innermode
-          :mode 'typescript-mode
-          :head-matcher "<[[:space:]]*script[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*ts[[:space:]]*[\"'][[:space:]]*>"
-          :tail-matcher "</[[:space:]]*script[[:space:]]*[[:space:]]*>"
-          :head-mode 'host
-          :tail-mode 'host)
+  (define-innermode poly-vue-typescript-innermode
+    :mode 'typescript-mode
+    :head-matcher "<[[:space:]]*script[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*ts[[:space:]]*[\"'][[:space:]]*>"
+    :tail-matcher "</[[:space:]]*script[[:space:]]*[[:space:]]*>"
+    :head-mode 'host
+    :tail-mode 'host)
 
-        (define-innermode poly-vue-javascript-innermode
-          :mode 'js2-mode
-          :head-matcher "<[[:space:]]*script[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*js[[:space:]]*[\"'][[:space:]]*>"
-          :tail-matcher "</[[:space:]]*script[[:space:]]*[[:space:]]*>"
-          :head-mode 'host
-          :tail-mode 'host)
+  (define-innermode poly-vue-javascript-innermode
+    :mode 'js2-mode
+    :head-matcher "<[[:space:]]*script[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*js[[:space:]]*[\"'][[:space:]]*>"
+    :tail-matcher "</[[:space:]]*script[[:space:]]*[[:space:]]*>"
+    :head-mode 'host
+    :tail-mode 'host)
 
-        (define-auto-innermode poly-vue-template-tag-lang-innermode
-          :head-matcher "<[[:space:]]*template[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*[[:alpha:]]+[[:space:]]*[\"'][[:space:]]*>"
-          :tail-matcher "</[[:space:]]*template[[:space:]]*[[:space:]]*>"
-          :mode-matcher (cons  "<[[:space:]]*template[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*\\([[:alpha:]]+\\)[[:space:]]*[\"'][[:space:]]*>" 1)
-          :head-mode 'host
-          :tail-mode 'host)
+  (define-auto-innermode poly-vue-template-tag-lang-innermode
+    :head-matcher "<[[:space:]]*template[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*[[:alpha:]]+[[:space:]]*[\"'][[:space:]]*>"
+    :tail-matcher "</[[:space:]]*template[[:space:]]*[[:space:]]*>"
+    :mode-matcher (cons  "<[[:space:]]*template[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*\\([[:alpha:]]+\\)[[:space:]]*[\"'][[:space:]]*>" 1)
+    :head-mode 'host
+    :tail-mode 'host)
 
-        (define-auto-innermode poly-vue-script-tag-lang-innermode
-          :head-matcher "<[[:space:]]*script[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*[[:alpha:]]+[[:space:]]*[\"'][[:space:]]*>"
-          :tail-matcher "</[[:space:]]*script[[:space:]]*[[:space:]]*>"
-          :mode-matcher (cons  "<[[:space:]]*script[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*\\([[:alpha:]]+\\)[[:space:]]*[\"'][[:space:]]*>" 1)
-          :head-mode 'host
-          :tail-mode 'host)
+  (define-auto-innermode poly-vue-script-tag-lang-innermode
+    :head-matcher "<[[:space:]]*script[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*[[:alpha:]]+[[:space:]]*[\"'][[:space:]]*>"
+    :tail-matcher "</[[:space:]]*script[[:space:]]*[[:space:]]*>"
+    :mode-matcher (cons  "<[[:space:]]*script[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*\\([[:alpha:]]+\\)[[:space:]]*[\"'][[:space:]]*>" 1)
+    :head-mode 'host
+    :tail-mode 'host)
 
-        (define-auto-innermode poly-vue-style-tag-lang-innermode
-          :head-matcher "<[[:space:]]*style[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*[[:alpha:]]+[[:space:]]*[\"'][[:space:]]*>"
-          :tail-matcher "</[[:space:]]*style[[:space:]]*[[:space:]]*>"
-          :mode-matcher (cons  "<[[:space:]]*style[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*\\([[:alpha:]]+\\)[[:space:]]*[\"'][[:space:]]*>" 1)
-          :head-mode 'host
-          :tail-mode 'host)
+  (define-auto-innermode poly-vue-style-tag-lang-innermode
+    :head-matcher "<[[:space:]]*style[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*[[:alpha:]]+[[:space:]]*[\"'][[:space:]]*>"
+    :tail-matcher "</[[:space:]]*style[[:space:]]*[[:space:]]*>"
+    :mode-matcher (cons  "<[[:space:]]*style[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*\\([[:alpha:]]+\\)[[:space:]]*[\"'][[:space:]]*>" 1)
+    :head-mode 'host
+    :tail-mode 'host)
 
-        (define-innermode poly-vue-style-innermode
-          :mode 'css-mode
-          :head-matcher "<[[:space:]]*style[[:space:]]*[[:space:]]*>"
-          :tail-matcher "</[[:space:]]*style[[:space:]]*[[:space:]]*>"
-          :head-mode 'host
-          :tail-mode 'host)
+  (define-innermode poly-vue-style-innermode
+    :mode 'css-mode
+    :head-matcher "<[[:space:]]*style[[:space:]]*[[:space:]]*>"
+    :tail-matcher "</[[:space:]]*style[[:space:]]*[[:space:]]*>"
+    :head-mode 'host
+    :tail-mode 'host)
 
-        (define-polymode vue-mode
-          :hostmode 'poly-sgml-hostmode
-          :innermodes '(
-                        poly-vue-typescript-innermode
-                        poly-vue-javascript-innermode
-                        poly-vue-template-tag-lang-innermode
-                        poly-vue-script-tag-lang-innermode
-                        poly-vue-style-tag-lang-innermode
-                        poly-vue-template-innermode
-                        poly-vue-script-innermode
-                        poly-vue-style-innermode
-                        )))
+  (define-polymode vue-mode
+    :hostmode 'poly-sgml-hostmode
+    :innermodes '(
+                  poly-vue-typescript-innermode
+                  poly-vue-javascript-innermode
+                  poly-vue-template-tag-lang-innermode
+                  poly-vue-script-tag-lang-innermode
+                  poly-vue-style-tag-lang-innermode
+                  poly-vue-template-innermode
+                  poly-vue-script-innermode
+                  poly-vue-style-innermode)))
