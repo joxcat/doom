@@ -69,7 +69,7 @@
 ;; (org-babel-do-load-languages
 ;;   'org-babel-load-languages
 
-;; LSP ESLINT / RUST
+;; LSP ESLINT
 (use-package lsp-mode
   :custom
   (lsp-eslint-validate '(javascript javascriptreact typescript typescriptreact vue)))
@@ -117,6 +117,13 @@
 (use-package lsp-ui
   :commands lsp-ui-mode
   :custom
+  ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
+  (lsp-lens-enable t)
+  (lsp-headerline-breadcrumb-enable t)
+  (lsp-modeline-code-actions-enable t)
+  (lsp-modeline-diagnostics-enable t)
+  (lsp-completion-show-detail t)
+  (lsp-completion-show-kind t)
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))
