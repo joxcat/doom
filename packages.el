@@ -15,51 +15,43 @@
 ;; Multimode per buffer
 (package! polymode)
 
-;; Nim in Org-mode
-;; (package! ob-nim)
-
 ;; Verb http request
 (package! verb)
 
 ;; Inspired by https://tecosaur.github.io/emacs-config/config.html#general-packages
-(package! rotate)
-(package! spray)
+;; (package! rotate)
+;; (package! spray)
 
-(package! keycast)
-(use-package! keycast
-  :commands keycast-mode
-  :config
-  (define-minor-mode keycast-mode
-    "Show current command and its key binding in the mode line."
-    :global t
-    (if keycast-mode
-        (progn
-          (add-hook 'pre-command-hook 'keycast-mode-line-update t)
-          (add-to-list 'global-mode-string '("" mode-line-keycast " ")))
-      (remove-hook 'pre-command-hook 'keycast-mode-line-update)
-      (setq global-mode-string (remove '("" mode-line-keycast " ") global-mode-string))))
-  (custom-set-faces!
-    '(keycast-command :inherit doom-modeline-debug
-                      :height 0.9)
-    '(keycast-key :inherit custom-modified
-                  :height 1.1
-                  :weight bold)))
+;; (package! keycast)
+;; (use-package! keycast
+;;   :commands keycast-mode
+;;   :config
+;;   (define-minor-mode keycast-mode
+;;     "Show current command and its key binding in the mode line."
+;;     :global t
+;;     (if keycast-mode
+;;         (progn
+;;           (add-hook 'pre-command-hook 'keycast-mode-line-update t)
+;;           (add-to-list 'global-mode-string '("" mode-line-keycast " ")))
+;;       (remove-hook 'pre-command-hook 'keycast-mode-line-update)
+;;       (setq global-mode-string (remove '("" mode-line-keycast " ") global-mode-string))))
+;;   (custom-set-faces!
+;;     '(keycast-command :inherit doom-modeline-debug
+;;                       :height 0.9)
+;;     '(keycast-key :inherit custom-modified
+;;                   :height 1.1
+;;                   :weight bold)))
 
 (package! magit-delta :recipe (:host github :repo "dandavison/magit-delta"))
 (package! info-colors)
-
-;; (package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el")) :disable t)
-;; (use-package! vlf-setup
-;;   :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
 
 (package! vlf :recipe (:host github :repo "m00natic/vlfi"))
 (package! elpy)
 
 (unpin! org-mode)
 (unpin! lsp-mode)
-;; (unpin! go-mode)
 (unpin! rustic)
-;; (unpin! nim-mode)
+
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/raxod502/straight.el#the-recipe-format
