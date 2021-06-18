@@ -69,11 +69,6 @@
 ;; (org-babel-do-load-languages
 ;;   'org-babel-load-languages
 
-;; LSP ESLINT
-(use-package lsp-mode
-  :custom
-  (lsp-eslint-validate '(javascript javascriptreact typescript typescriptreact vue)))
-
 ;; Verb conf
 (use-package org
   :mode ("\\.org\\'" . org-mode)
@@ -107,6 +102,7 @@
 (use-package lsp-mode
   :commands lsp
   :custom
+  (read-process-output-max (* 1024 1024))
   (lsp-rust-analyzer-cargo-watch-command "clippy")
   (lsp-eldoc-render-all t)
   (lsp-idle-delay 0.6)
@@ -117,6 +113,12 @@
 (use-package lsp-ui
   :commands lsp-ui-mode
   :custom
+  (lsp-ui-doc-header t)
+  (lsp-ui-doc-position 'top)
+  (lsp-ui-doc-delay 1)
+  (lsp-ui-doc-use-childframe 't)
+  (lsp-ui-sideline-show-diagnostics nil)
+  (lsp-eslint-validate '(javascript javascriptreact typescript typescriptreact vue))
   ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
   (lsp-lens-enable t)
   (lsp-headerline-breadcrumb-enable t)
@@ -125,14 +127,19 @@
   (lsp-completion-show-detail t)
   (lsp-completion-show-kind t)
   (lsp-ui-peek-always-show t)
-  (lsp-ui-sideline-show-hover t)
-  (lsp-ui-doc-enable nil))
+  (lsp-ui-sideline-show-hover t))
+  ;;(lsp-ui-doc-enable nil)
 
 (use-package company
   :custom
-  (company-idle-delay 0.5))
+  (company-dabbrev-downcase nil)
+  (company-dabbrev-ignore-case nil)
+  (company-idle-delay 0)
+  :config
+  (global-company-mode))
 
-(use-package flycheck)
+(use-package flycheck
+  :config (global-flycheck-mode))
 
 (setq lsp-rust-analyzer-server-display-inlay-hints t)
 
@@ -209,6 +216,28 @@
   ;(setq lsp-log-io nil)
   ;; handle yasnippet externally
   (setq lsp-enable-snippet nil))
+
+;; Indent guides inspired by https://github.com/adimit/config/blob/master/newmacs/main.org
+(use-package highlight-indent-guides
+  :hook (prog-mode . highlight-indent-guides-mode)
+  :custom (highlight-indent-guides-method 'character))
+
+;; Typescript
+(use-package json-mode
+  :mode "\\.json$"
+  :config
+  (add-to-list 'flycheck-disabled-checkers 'json-python-json))
+
+(use-package typescript-mode
+  :mode "\\.tsx?$"
+  :hook
+  (typescript-mode . lsp)
+  :custom
+  (typescript-indent-level 2))
+
+(use-package prettier
+  :hook
+  ((typescript-mode json-mode) . prettier-mode))
 
 ;; Vue support using polymode
 (use-package polymode
