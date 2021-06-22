@@ -23,8 +23,12 @@
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 (setq doom-font (font-spec :family "Iosevka Nerd Font" :size 15)
+      doom-big-font (font-spec :family "Iosevka Custom" :size 15)
       doom-variable-pitch-font (font-spec :family "Iosevka Custom" :size 15)
-      doom-big-font (font-spec :family "Iosevka Custom" :size 15))
+      doom-unicode-font (font-spec :family "JuliaMono")
+      doom-serif-font (font-spec :family "IBM Plex Mono" :weight 'light))
+
+(load! "tools/require-fonts.el")
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -43,8 +47,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-;; (setq display-line-numbers-type t)
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -69,248 +72,15 @@
 ;; (org-babel-do-load-languages
 ;;   'org-babel-load-languages
 
-;; Verb conf
-(use-package org
-  :mode ("\\.org\\'" . org-mode)
-  :config
-  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+(load! "lang/org.el")
+(load! "lang/rust.el")
+(load! "lang/plain.el")
+(load! "lang/vue.el")
+(load! "lang/jsts.el")
 
-;; Magit side by side
-(setq magit-ediff-dwim-show-on-hunks t)
-
-;; RUUUST
-(use-package rustic
-  :bind (:map rustic-mode-map
-              ("M-j" . lsp-ui-imenu)
-              ("M-?" . lsp-find-references)
-              ("C-c C-c l" . flycheck-list-errors)
-              ("C-c C-c a" . lsp-execute-code-action)
-              ("C-c C-c r" . lsp-rename)
-              ("C-c C-c q" . lsp-workspace-restart)
-              ("C-c C-c Q" . lsp-workspace-shutdown)
-              ("C-c C-c s" . lsp-rust-analyzer-status))
-  :config
-  ;; comment to disable rustfmt on save
-  (setq rustic-format-on-save t)
-  (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
-
-(defun rk/rustic-mode-hook ()
-  ;; so that run C-c C-c C-r works without having to confirm
-  (setq-local buffer-save-without-query t)
-  (setq-local lsp-ui-sideline-enable nil))
-
-(use-package lsp-mode
-  :commands lsp
-  :custom
-  (read-process-output-max (* 1024 1024))
-  (lsp-rust-analyzer-cargo-watch-command "clippy")
-  (lsp-eldoc-render-all t)
-  (lsp-idle-delay 0.6)
-  (lsp-rust-analyzer-server-display-inlay-hints t)
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-
-(use-package lsp-ui
-  :commands lsp-ui-mode
-  :custom
-  (lsp-ui-doc-header t)
-  (lsp-ui-doc-position 'top)
-  (lsp-ui-doc-delay 1)
-  (lsp-ui-doc-use-childframe 't)
-  (lsp-ui-sideline-show-diagnostics nil)
-  (lsp-eslint-validate '(javascript javascriptreact typescript typescriptreact vue))
-  ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
-  (lsp-lens-enable t)
-  (lsp-headerline-breadcrumb-enable t)
-  (lsp-modeline-code-actions-enable t)
-  (lsp-modeline-diagnostics-enable t)
-  (lsp-completion-show-detail t)
-  (lsp-completion-show-kind t)
-  (lsp-ui-peek-always-show t)
-  (lsp-ui-sideline-show-hover t))
-  ;;(lsp-ui-doc-enable nil)
-
-(use-package company
-  :custom
-  (company-dabbrev-downcase nil)
-  (company-dabbrev-ignore-case nil)
-  (company-idle-delay 0)
-  :config
-  (global-company-mode))
-
-(use-package flycheck
-  :config (global-flycheck-mode))
-
-(setq lsp-rust-analyzer-server-display-inlay-hints t)
-
-;; Org-mode conf
-(setq org-emphasis-alist
-  '(("*" (bold :foreground "brown1"))
-    ("/" (italic :foreground "gold"))
-    ("_" underline)
-    ("=" (:background "orange" :foreground "Black"))
-    ("~" (:foreground "RoyalBlue1"))
-    ("+" (:strike-through t :foreground "gray30"))))
-(setq org-hide-block-startup t)
-;; (setq org-hide-emphasis-markers t)
-
-;; ANSI Colors in plain text
-(after! text-mode
-  (add-hook! 'text-mode-hook
-    ;; Apply ANSI color codes
-    (with-silent-modifications
-      (ansi-color-apply-on-region (point-min) (point-max))
-      )
-    )
-  )
-(after! vlf-mode
-  (add-hook! 'vlf-mode-hook
-    (with-silent-modifications
-      (ansi-color-apply-on-region (point-min) (point-max))
-      )
-    )
-  )
-
-;; Remove UTF-8 from modeline
-(defun doom-modeline-conditional-buffer-encoding ()
-  "We expect the encoding to be LF UTF-8, so only show the modeline when this is not the case"
-  (setq-local doom-modeline-buffer-encoding
-              (unless (or (eq buffer-file-coding-system 'utf-8-unix)
-                          (eq buffer-file-coding-system 'utf-8)))))
-
-(add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
-
-(setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
-      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
-      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
-      truncate-string-ellipsis "…")               ; Unicode ellispis are nicer than "...", and also save /precious/ space
-
-(display-time-mode 1)                             ; Enable time in the mode-line
-(global-subword-mode 1)                           ; Iterate through CamelCase words
-
-;; Select buffer on split
-(setq evil-vsplit-window-right t
-      evil-split-window-below t)
-(defadvice! prompt-for-buffer (&rest _)
-  :after '(evil-window-split evil-window-vsplit)
-  (+ivy/switch-buffer))
-(setq +ivy-buffer-preview t)
-
-;; Rotate windows
-(map! :map evil-window-map
-      "SPC" #'rotate-layout
-      ;; Navigation
-      "<left>"     #'evil-window-left
-      "<down>"     #'evil-window-down
-      "<up>"       #'evil-window-up
-      "<right>"    #'evil-window-right
-      ;; Swapping windows
-      "C-<left>"       #'+evil/window-move-left
-      "C-<down>"       #'+evil/window-move-down
-      "C-<up>"         #'+evil/window-move-up
-      "C-<right>"      #'+evil/window-move-right)
-
-;; LSP improvements
-(with-eval-after-load 'lsp-mode
-  ;; enable log only for debug
-  ;(setq lsp-log-io nil)
-  ;; handle yasnippet externally
-  (setq lsp-enable-snippet nil))
-
-;; Indent guides inspired by https://github.com/adimit/config/blob/master/newmacs/main.org
-(use-package highlight-indent-guides
-  :hook (prog-mode . highlight-indent-guides-mode)
-  :custom (highlight-indent-guides-method 'character))
-
-;; Typescript
-(use-package json-mode
-  :mode "\\.json$"
-  :config
-  (add-to-list 'flycheck-disabled-checkers 'json-python-json))
-
-(use-package typescript-mode
-  :mode "\\.tsx?$"
-  :hook
-  (typescript-mode . lsp)
-  :custom
-  (typescript-indent-level 2))
-
-(use-package prettier
-  :hook
-  ((typescript-mode json-mode) . prettier-mode))
-
-;; Vue support using polymode
-(use-package polymode
-  :defer t
-  :hook (vue-mode . lsp-deferred)
-  :mode ("\\.vue\\'" . vue-mode)
-  :config
-
-
-  (define-innermode poly-vue-template-innermode
-    :mode 'html-mode
-    :head-matcher "<[[:space:]]*template[[:space:]]*[[:space:]]*>"
-    :tail-matcher "</[[:space:]]*template[[:space:]]*[[:space:]]*>"
-    :head-mode 'host
-    :tail-mode 'host)
-
-  (define-innermode poly-vue-script-innermode
-    :mode 'js-mode
-    :head-matcher "<[[:space:]]*script[[:space:]]*[[:space:]]*>"
-    :tail-matcher "</[[:space:]]*script[[:space:]]*[[:space:]]*>"
-    :head-mode 'host
-    :tail-mode 'host)
-
-  (define-innermode poly-vue-typescript-innermode
-    :mode 'typescript-mode
-    :head-matcher "<[[:space:]]*script[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*ts[[:space:]]*[\"'][[:space:]]*>"
-    :tail-matcher "</[[:space:]]*script[[:space:]]*[[:space:]]*>"
-    :head-mode 'host
-    :tail-mode 'host)
-
-  (define-innermode poly-vue-javascript-innermode
-    :mode 'js2-mode
-    :head-matcher "<[[:space:]]*script[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*js[[:space:]]*[\"'][[:space:]]*>"
-    :tail-matcher "</[[:space:]]*script[[:space:]]*[[:space:]]*>"
-    :head-mode 'host
-    :tail-mode 'host)
-
-  (define-auto-innermode poly-vue-template-tag-lang-innermode
-    :head-matcher "<[[:space:]]*template[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*[[:alpha:]]+[[:space:]]*[\"'][[:space:]]*>"
-    :tail-matcher "</[[:space:]]*template[[:space:]]*[[:space:]]*>"
-    :mode-matcher (cons  "<[[:space:]]*template[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*\\([[:alpha:]]+\\)[[:space:]]*[\"'][[:space:]]*>" 1)
-    :head-mode 'host
-    :tail-mode 'host)
-
-  (define-auto-innermode poly-vue-script-tag-lang-innermode
-    :head-matcher "<[[:space:]]*script[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*[[:alpha:]]+[[:space:]]*[\"'][[:space:]]*>"
-    :tail-matcher "</[[:space:]]*script[[:space:]]*[[:space:]]*>"
-    :mode-matcher (cons  "<[[:space:]]*script[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*\\([[:alpha:]]+\\)[[:space:]]*[\"'][[:space:]]*>" 1)
-    :head-mode 'host
-    :tail-mode 'host)
-
-  (define-auto-innermode poly-vue-style-tag-lang-innermode
-    :head-matcher "<[[:space:]]*style[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*[[:alpha:]]+[[:space:]]*[\"'][[:space:]]*>"
-    :tail-matcher "</[[:space:]]*style[[:space:]]*[[:space:]]*>"
-    :mode-matcher (cons  "<[[:space:]]*style[[:space:]]*lang=[[:space:]]*[\"'][[:space:]]*\\([[:alpha:]]+\\)[[:space:]]*[\"'][[:space:]]*>" 1)
-    :head-mode 'host
-    :tail-mode 'host)
-
-  (define-innermode poly-vue-style-innermode
-    :mode 'css-mode
-    :head-matcher "<[[:space:]]*style[[:space:]]*[[:space:]]*>"
-    :tail-matcher "</[[:space:]]*style[[:space:]]*[[:space:]]*>"
-    :head-mode 'host
-    :tail-mode 'host)
-
-  (define-polymode vue-mode
-    :hostmode 'poly-sgml-hostmode
-    :innermodes '(
-                  poly-vue-typescript-innermode
-                  poly-vue-javascript-innermode
-                  poly-vue-template-tag-lang-innermode
-                  poly-vue-script-tag-lang-innermode
-                  poly-vue-style-tag-lang-innermode
-                  poly-vue-template-innermode
-                  poly-vue-script-innermode
-                  poly-vue-style-innermode)))
+(load! "tweaks/better-defaults.el")
+(load! "tweaks/lsp.el")
+(load! "tweaks/git.el")
+(load! "tweaks/completion.el")
+(load! "tweaks/indent.el")
+(load! "tweaks/window.el")
