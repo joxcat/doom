@@ -14,7 +14,12 @@
   :config
   ;; comment to disable rustfmt on save
   (setq rustic-format-on-save t)
-  (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
+  (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook)
+  :custom
+  (rustic-format-trigger 'on-save)
+  (rustic-lsp-server 'rust-analyser)
+  (lsp-rust-server 'rust-analyser)
+  (lsp-rust-analyzer-server-command '("~/.cargo/bin/rust-analyzer")))
 
 (defun rk/rustic-mode-hook ()
   ;; so that run C-c C-c C-r works without having to confirm
