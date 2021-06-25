@@ -25,6 +25,8 @@
 (package! vlf :recipe (:host github :repo "m00natic/vlfi"))
 (package! elpy)
 
+(package! company-prescient)
+
 (unpin! org-mode)
 (unpin! lsp-mode)
 (unpin! rustic)
