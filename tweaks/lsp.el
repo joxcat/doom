@@ -9,7 +9,8 @@
   (lsp-idle-delay 0.6)
   (lsp-rust-analyzer-server-display-inlay-hints t)
   :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (setq lsp-eslint-auto-fix-on-save t))
 
 (use-package! lsp-ui
   :commands lsp-ui-mode

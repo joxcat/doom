@@ -8,10 +8,13 @@
   (company-show-numbers t)
   (company-minimum-prefix-length 2)
   :config
-  (global-company-mode))
+  (global-company-mode)
+  (setq company-tooltip-align-annotations t))
 
 (use-package! flycheck
-  :config (global-flycheck-mode))
+  :config
+  (global-flycheck-mode)
+  (setq flycheck-check-syntax-automatically t))
 
 (use-package! prescient
   :config (prescient-persist-mode 1))

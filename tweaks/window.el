@@ -28,7 +28,6 @@
 (add-to-list 'default-frame-alist '(height . 24))
 (add-to-list 'default-frame-alist '(width . 80))
 
-
 ;; Window title https://tecosaur.github.io/emacs-config/config.html#window-title
 (setq frame-title-format
       '(""
