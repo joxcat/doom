@@ -28,8 +28,8 @@
 (package! company-prescient)
 
 ;; Tree-sitter https://hungyi.net/posts/use-emacs-tree-sitter-doom-emacs/
-(package! tree-sitter)
-(package! tree-sitter-langs)
+;; (package! tree-sitter)
+;; (package! tree-sitter-langs)
 
 (unpin! org-mode)
 (unpin! lsp-mode)
