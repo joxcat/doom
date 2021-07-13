@@ -18,8 +18,15 @@
   :custom
   (rustic-format-trigger 'on-save)
   (rustic-lsp-server 'rust-analyser)
+  (rustic-analyzer-command '("rust-analyzer"))
   (lsp-rust-server 'rust-analyser)
-  (lsp-rust-analyzer-server-command '("~/.cargo/bin/rust-analyzer")))
+  (lsp-rust-analyzer-server-command '("rust-analyzer"))
+  (lsp-enable-file-watchers nil)
+  (lsp-enable-completion-at-point t)
+  (lsp-enable-imenu t)
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-rust-analyzer-server-display-inlay-hints t)
+  (lsp-rust-analyzer-cargo-watch-enable t))
 
 (defun rk/rustic-mode-hook ()
   ;; so that run C-c C-c C-r works without having to confirm
