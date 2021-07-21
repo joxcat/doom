@@ -16,11 +16,11 @@
 ;;   ;; (global-flycheck-mode)
 ;;   (setq flycheck-check-syntax-automatically t))
 
-;; (use-package! prescient
-;;   :config (prescient-persist-mode 1))
+(use-package! prescient
+  :config (prescient-persist-mode))
 
-;; (use-package! ivy-prescient
-;;   :config (ivy-prescient-mode 1))
+(use-package! ivy-prescient
+  :config (ivy-prescient-mode))
 
-;; (use-package! company-prescient
-;;   :config (company-prescient-mode 1))
+(use-package! company-prescient
+  :config (company-prescient-mode))

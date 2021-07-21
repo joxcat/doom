@@ -18,7 +18,7 @@
 ;; Verb http request
 (package! verb)
 
-(package! magit-delta :recipe (:host github :repo "dandavison/magit-delta"))
+;; (package! magit-delta :recipe (:host github :repo "dandavison/magit-delta"))
 (package! info-colors)
 (package! git-commit-mode)
 

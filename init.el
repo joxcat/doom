@@ -70,7 +70,7 @@
        electric          ; smarter, keyword-based electric-indent
        (ibuffer +icons)        ; interactive buffer management
        (undo +tree)              ; persistent, smarter undo for your inevitable mistakes
-       ;;linevc                ; version-control and Emacs, sitting in a tree
+       ;;vc                ; version-control and Emacs, sitting in a tree
 
        :term
        ;;eshell            ; the elisp shell that works everywhere
@@ -167,6 +167,7 @@
        ;;terra             ; Earth and Moon in alignment for performance.
        web               ; the tubes
        yaml              ; JSON, but readable
+       (zig +lsp)          ; C, but simpler
 
        :email
        ;;(mu4e +gmail)
@@ -175,6 +176,8 @@
 
        :app
        ;;calendar
+       ;;emms
+       ;;everywhere        ; *leave* Emacs!? You must be joking
        ;;irc               ; how neckbeards socialize
        ;;(rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought

@@ -13,8 +13,8 @@
   :config
   (add-to-list 'flycheck-disabled-checkers 'json-python-json))
 
-(use-package! prettier
-  :hook (typescript-mode . prettier-mode))
+;; (use-package! prettier
+;;   :hook (typescript-mode . prettier-mode))
 
 (use-package! web-mode
   :mode (("\\.tsx$" . web-mode)
