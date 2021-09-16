@@ -31,7 +31,7 @@
 ;; (package! tree-sitter)
 ;; (package! tree-sitter-langs)
 
-(unpin! org-mode)
+;; (unpin! org-mode)
 (unpin! lsp-mode)
 (unpin! rustic)
 
