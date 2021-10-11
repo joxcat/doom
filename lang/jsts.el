@@ -4,8 +4,8 @@
 (defun setup-tide-mode ()
   (tide-setup)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode)
-  (tide-hl-identifier-mode))
+  (eldoc-mode))
+  ;; (tide-hl-identifier-mode))
 
 ;; Specifics
 (use-package! json-mode

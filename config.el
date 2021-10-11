@@ -25,8 +25,8 @@
 (setq doom-font (font-spec :family "Iosevka" :size 15)
       doom-big-font (font-spec :family "Iosevka" :size 15)
       doom-variable-pitch-font (font-spec :family "Iosevka" :size 15)
-      doom-unicode-font (font-spec :family "JuliaMono")
-      doom-serif-font (font-spec :family "IBM Plex Mono" :weight 'light))
+      doom-unicode-font (font-spec :family "Iosevka")
+      doom-serif-font (font-spec :family "Iosevka"))
 
 (load! "tools/require-fonts.el")
 
