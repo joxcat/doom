@@ -111,8 +111,8 @@
 
        :lang
        ;;agda              ; types of types of types of types...
-       ;;cc                ; C/C++/Obj-C madness
-       (clojure +lsp)           ; java with a lisp
+       cc                ; C/C++/Obj-C madness
+       ;;(clojure +lsp)    ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
@@ -143,10 +143,10 @@
        ;;ledger            ; an accounting system in Emacs
        ;;lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
-       ;;(nim +lsp)               ; python + lisp at the speed of c
+       ;;(nim +lsp)        ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +gnuplot +present +pandoc +brain)                 ; organize your plain life in plain text +pretty
+       (org +gnuplot +pandoc +jupyter)                 ; organize your plain life in plain text +pretty
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
