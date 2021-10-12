@@ -17,3 +17,6 @@
 
 (display-time-mode 1)                             ; Enable time in the mode-line
 (global-subword-mode 1)                           ; Iterate through CamelCase words
+
+(map! :n "SPC c q" #'er/expand-region
+      "C-c q" #'er/expand-region)
