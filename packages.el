@@ -22,10 +22,15 @@
 (package! info-colors)
 (package! git-commit-mode)
 
+;; Manage very big files
 (package! vlf :recipe (:host github :repo "m00natic/vlfi"))
 (package! elpy)
 
+;; Autocomplete
 (package! company-prescient)
+
+;; Discord rich presence for fun!
+(package! elcord)
 
 ;; Tree-sitter https://hungyi.net/posts/use-emacs-tree-sitter-doom-emacs/
 ;; (package! tree-sitter)

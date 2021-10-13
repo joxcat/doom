@@ -20,3 +20,9 @@
 
 (map! :n "SPC c q" #'er/expand-region
       "C-c q" #'er/expand-region)
+
+;; Keeping custom out of doom config
+(setq custom-file
+      (if (boundp 'server-socket-dir)
+          (expand-file-name "custom.el" server-socket-dir)
+        (expand-file-name (format "emacs-custom-%s.el" (user-uid)) temporary-file-directory)))

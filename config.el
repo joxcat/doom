@@ -85,3 +85,4 @@
 (load! "tweaks/indent.el")
 (load! "tweaks/window.el")
 (load! "tweaks/tree-sitter.el")
+(load! "tweaks/gadgets.el")
