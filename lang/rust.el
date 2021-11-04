@@ -33,8 +33,6 @@
 ;;   (setq-local buffer-save-without-query t)
 ;;   (setq-local lsp-ui-sideline-enable nil))
 
-(setq lsp-rust-analyzer-server-display-inlay-hints t)
-
 (use-package! rustic
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
@@ -47,10 +45,21 @@
               ("C-c C-c s" . lsp-rust-analyzer-status))
   :config
   (setq rustic-format-on-save t)
-  :custom
-  (rustic-format-trigger 'on-save)
-  (lsp-enable-completion-at-point t)
-  (lsp-enable-imenu t)
-  (lsp-rust-analyzer-cargo-watch-command "clippy")
-  (lsp-rust-analyzer-server-display-inlay-hints t)
-  (lsp-rust-analyzer-cargo-watch-enable t))
+  (setq rustic-format-trigger 'on-save)
+  (setq rustic-analyzer-command '("~/.cargo/bin/rust-analyzer"))
+  (setq lsp-enable-imenu t)
+  (setq lsp-eldoc-render-all t)
+  (setq lsp-idle-delay 0.6)
+  (setq lsp-ui-peek-always-show t)
+  (setq lsp-ui-sideline-enable nil)
+  (setq lsp-ui-sideline-show-hover t)
+  (setq lsp-ui-doc-enable t)
+  (setq lsp-rust-analyzer-server-display-inlay-hints t)
+  (setq lsp-rust-analyzer-cargo-watch-command "clippy")
+  (setq lsp-rust-analyzer-server-display-inlay-hints t)
+  (setq lsp-rust-analyzer-cargo-watch-enable t)
+  (setq lsp-rust-analyzer-proc-macro-enable t)
+  (setq lsp-rust-analyzer-rustfmt-extra-args ["--edition=2021"]))
+
+;; (defun inlay-hints-on ()
+;;   (lsp-rust-analyzer-inlay-hints-mode +1))
