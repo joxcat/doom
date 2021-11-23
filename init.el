@@ -15,9 +15,9 @@
 ;;      directory (for easy access to its source code).
 
 ;; Benchmark @NOTE disable if not benchmarking
-(when doom-debug-p
-  (require 'benchmark-init)
-  (add-hook 'doom-first-input-hook #'benchmark-init/deactivate))
+;; (when doom-debug-p
+;;   (require 'benchmark-init)
+;;   (add-hook 'doom-first-input-hook #'benchmark-init/deactivate))
 
 (doom! :input
        ;;chinese
