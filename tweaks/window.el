@@ -23,21 +23,3 @@
       "C-<down>"       #'+evil/window-move-down
       "C-<up>"         #'+evil/window-move-up
       "C-<right>"      #'+evil/window-move-right)
-
-;; Frame sizing https://tecosaur.github.io/emacs-config/config.html#frame-sizing
-(add-to-list 'default-frame-alist '(height . 24))
-(add-to-list 'default-frame-alist '(width . 80))
-
-;; Window title https://tecosaur.github.io/emacs-config/config.html#window-title
-;; (setq frame-title-format
-;;       '(""
-;;         (:eval
-;;          (if (s-contains-p org-roam-directory (or buffer-file-name ""))
-;;              (replace-regexp-in-string
-;;               ".*/[0-9]*-?" "☰ "
-;;               (subst-char-in-string ?_ ?  buffer-file-name))
-;;            "%b"))
-;;         (:eval
-;;          (let ((project-name (projectile-project-name)))
-;;            (unless (string= "-" project-name)
-;;              (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))

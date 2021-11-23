@@ -9,7 +9,8 @@
 
 ;; Specifics
 (use-package! json-mode
-  :mode "\\.json$"
+  :defer t
+  :mode ("\\.json$" . json-mode)
   :config
   (add-to-list 'flycheck-disabled-checkers 'json-python-json))
 

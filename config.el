@@ -3,6 +3,8 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+;; Default emacs size at startup
+(setq initial-frame-alist '((width . 128) (height . 48)))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -66,17 +68,12 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; Enable lsp for Nim
-;(add-hook 'nim-mode-local-vars-hook #'lsp!)
-;; (add-hook 'nim-mode-hook #'lsp!)
-;; (org-babel-do-load-languages
-;;   'org-babel-load-languages
-
 (load! "lang/org.el")
 (load! "lang/rust.el")
 (load! "lang/plain.el")
 (load! "lang/vue.el")
 (load! "lang/jsts.el")
+(load! "lang/mint.el")
 
 (load! "tweaks/better-defaults.el")
 (load! "tweaks/lsp.el")

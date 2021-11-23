@@ -1,6 +1,7 @@
 ;;; $DOOMDIR/tweaks/git.el -*- lexical-binding: t; -*-
 
 (use-package! magit
+  :defer t
   :config
   (setq magit-diff-refine-hunk 't)
   (setq magit-diff-refine-ignore-whitespace 'nil)

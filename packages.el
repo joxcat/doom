@@ -32,6 +32,12 @@
 ;; Discord rich presence for fun!
 (package! elcord)
 
+;; Mint lang
+(package! mint-mode
+  :recipe (:host github
+           :repo "creatorrr/emacs-mint-mode"
+           :files ("tokens" "mint-mode.el")))
+
 ;; Tree-sitter https://hungyi.net/posts/use-emacs-tree-sitter-doom-emacs/
 ;; (package! tree-sitter)
 ;; (package! tree-sitter-langs)
@@ -79,3 +85,6 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+;; Benchmark @NOTE disable if not benchmarking
+(package! benchmark-init)

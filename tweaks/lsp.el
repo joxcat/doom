@@ -1,6 +1,7 @@
 ;;; $DOOMDIR/tweaks/lsp.el -*- lexical-binding: t; -*-
 
 (use-package! lsp-mode
+  :defer t
   :commands lsp
   :custom
   (read-process-output-max (* 1024 1024))
@@ -21,6 +22,7 @@
   ;; (setq lsp-eslint-auto-fix-on-save t))
 
 (use-package! lsp-ui
+  :defer t
   :commands lsp-ui-mode
   :config
   (setq lsp-ui-doc-enable t)
@@ -29,8 +31,8 @@
   (setq lsp-ui-doc-position 'at-point)
   (setq lsp-ui-doc-delay 0.2)
   (setq lsp-ui-doc-use-childframe t)
-  (setq lsp-ui-doc-show-with-cursor nil)
-  (setq lsp-ui-doc-show-with-mouse t)
+  (setq lsp-ui-doc-show-with-cursor t)
+  (setq lsp-ui-doc-show-with-mouse nil)
   (setq lsp-ui-peek-enable t)
   (setq lsp-ui-peek-always-show t)
   (setq lsp-ui-sideline-enable nil)

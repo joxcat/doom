@@ -14,6 +14,11 @@
 ;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
 ;;      directory (for easy access to its source code).
 
+;; Benchmark @NOTE disable if not benchmarking
+(when doom-debug-p
+  (require 'benchmark-init)
+  (add-hook 'doom-first-input-hook #'benchmark-init/deactivate))
+
 (doom! :input
        ;;chinese
        ;;japanese
@@ -37,7 +42,7 @@
        indent-guides     ; highlighted indent columns
        ;;ligatures         ; ligatures and symbols to make your code pretty again
        ;;minimap           ; show a map of the code on the side
-       modeline ; snazzy, Atom-inspired modeline, plus API
+       (modeline +light) ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on

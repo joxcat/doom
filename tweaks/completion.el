@@ -1,6 +1,7 @@
 ;;; $DOOMDIR/tweaks/completion.el -*- lexical-binding: t; -*-
 
 (use-package! company
+  :defer t
   :custom
   (company-dabbrev-downcase nil)
   (company-dabbrev-ignore-case nil)
@@ -17,10 +18,13 @@
 ;;   (setq flycheck-check-syntax-automatically t))
 
 (use-package! prescient
+  :defer t
   :config (prescient-persist-mode))
 
 (use-package! ivy-prescient
+  :defer t
   :config (ivy-prescient-mode))
 
 (use-package! company-prescient
+  :defer t
   :config (company-prescient-mode))

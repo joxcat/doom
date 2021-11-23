@@ -1,6 +1,7 @@
 ;;; $DOOMDIR/lang/org.el -*- lexical-binding: t; -*-
 
 (use-package! org
+  :defer t
   :mode ("\\.org\\'" . org-mode)
   :config
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
