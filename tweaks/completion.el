@@ -25,6 +25,13 @@
   :defer t
   :config (ivy-prescient-mode))
 
+(use-package! ivy-postframe
+  :defer t
+  :config
+  (setq ivy-posframe-hide-minibuffer t)
+  (setq ivy-posframe-display-functions-alist '(t . ivy-posframe-display-at-frame-center))
+  (ivy-postframe-mode))
+
 (use-package! company-prescient
   :defer t
   :config (company-prescient-mode))

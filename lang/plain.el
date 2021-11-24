@@ -5,15 +5,15 @@
   (add-hook! 'text-mode-hook
     ;; Apply ANSI color codes
     (with-silent-modifications
-      (ansi-color-apply-on-region (point-min) (point-max))
-      )
-    )
-  )
+      (ansi-color-apply-on-region (point-min) (point-max)))))
 
 (after! vlf-mode
   (add-hook! 'vlf-mode-hook
     (with-silent-modifications
-      (ansi-color-apply-on-region (point-min) (point-max))
-      )
-    )
-  )
+      (ansi-color-apply-on-region (point-min) (point-max)))))
+
+(use-package! vlf
+  :defer t
+  :config
+  (require 'vlf-setup)
+  (custom-set-variables '(vlf-application 'dont-ask)))
