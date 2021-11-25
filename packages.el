@@ -21,6 +21,8 @@
 ;; (package! magit-delta :recipe (:host github :repo "dandavison/magit-delta"))
 (package! info-colors)
 (package! git-commit-mode)
+(package! git-timemachine)
+(package! diffview)
 
 ;; Manage very big files
 (package! vlf :recipe (:host github :repo "m00natic/vlfi"))

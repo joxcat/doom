@@ -29,6 +29,7 @@
   :defer t
   :config
   (setq ivy-posframe-hide-minibuffer t)
+  (setq ivy-posframe-parameters '((left-fringe . 5) (right-fringe . 5)))
   (setq ivy-posframe-display-functions-alist '(t . ivy-posframe-display-at-frame-center))
   (ivy-postframe-mode))
 
