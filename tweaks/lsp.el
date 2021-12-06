@@ -8,7 +8,7 @@
   :config
   (setq lsp-enable-imenu t)
   (setq lsp-eldoc-render-all t)
-  (setq lsp-idle-delay 0.5)
+  (setq lsp-idle-delay 0.6)
   (setq lsp-enable-snippet nil)
   ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
   (setq lsp-lens-enable t)

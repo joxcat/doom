@@ -5,7 +5,7 @@
   :custom
   (company-dabbrev-downcase nil)
   (company-dabbrev-ignore-case nil)
-  (company-idle-delay 0)
+  (company-idle-delay 0.3)
   (company-show-numbers t)
   (company-minimum-prefix-length 2)
   :config

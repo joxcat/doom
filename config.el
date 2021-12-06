@@ -83,3 +83,6 @@
 (load! "tweaks/window.el")
 (load! "tweaks/tree-sitter.el")
 (load! "tweaks/gadgets.el")
+
+(if (eq system-type 'darwin)
+    (load! "tweaks/osx.el"))
