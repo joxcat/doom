@@ -69,11 +69,21 @@
 ;; they are implemented.
 
 (load! "lang/org.el")
-(load! "lang/rust.el")
+(after! rustic
+  (load! "lang/rust.el"))
 (load! "lang/plain.el")
-(load! "lang/vue.el")
-(load! "lang/jsts.el")
-(load! "lang/mint.el")
+(after! polymode
+  (load! "lang/vue.el"))
+(after! (:or
+         json-mode
+         (:and
+          web-mode
+          typescript-mode
+          js2-mode))
+  (load! "lang/jsts.el"))
+(after! mint-mode
+  (load! "lang/mint.el"))
+(load! "lang/env.el")
 
 (load! "tweaks/better-defaults.el")
 (load! "tweaks/lsp.el")

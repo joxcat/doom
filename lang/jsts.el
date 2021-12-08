@@ -20,14 +20,17 @@
 (use-package! web-mode
   :mode (("\\.tsx$" . web-mode)
          ("\\.jsx$" . web-mode))
-  :hook (web-mode . lsp))
+  :hook ((web-mode . lsp)
+         (web-mode . prettier-js-mode)))
 
 (use-package! typescript-mode
   :mode ("\\.ts$" . typescript-mode)
   :hook ((typescript-mode . lsp))
-         (typescript-mode . setup-tide-mode))
+         (typescript-mode . setup-tide-mode)
+         (typescript-mode . prettier-js-mode))
 
 (use-package! js2-mode
   :mode ("\\.js$" . js2-mode)
   :hook ((js2-mode . lsp))
-         (js2-mode . setup-tide-mode))
+         (js2-mode . setup-tide-mode)
+         (js2-mode . prettier-js-mode))

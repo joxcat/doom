@@ -15,6 +15,9 @@
 ;; Multimode per buffer
 (package! polymode)
 
+;; Javascript
+(package! prettier-js)
+
 ;; Verb http request
 (package! verb)
 
@@ -34,11 +37,14 @@
 ;; Discord rich presence for fun!
 (package! elcord)
 
+;; Annotate everything
+(package! annotate)
+
 ;; Mint lang
-(package! mint-mode
-  :recipe (:host github
-           :repo "creatorrr/emacs-mint-mode"
-           :files ("tokens" "mint-mode.el")))
+;; (package! mint-mode
+;;   :recipe (:host github
+;;            :repo "creatorrr/emacs-mint-mode"
+;;            :files ("tokens" "mint-mode.el")))
 
 ;; Tree-sitter https://hungyi.net/posts/use-emacs-tree-sitter-doom-emacs/
 ;; (package! tree-sitter)

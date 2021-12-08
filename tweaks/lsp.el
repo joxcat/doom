@@ -6,6 +6,7 @@
   :custom
   (read-process-output-max (* 1024 1024))
   :config
+  (setq lsp-log-io nil)
   (setq lsp-enable-imenu t)
   (setq lsp-eldoc-render-all t)
   (setq lsp-idle-delay 0.6)
