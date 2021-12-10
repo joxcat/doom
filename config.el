@@ -68,6 +68,9 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; HACK: https://github.com/kiwanami/emacs-epc/issues/35
+(setq byte-compile-warnings '(cl-functions))
+
 (load! "lang/org.el")
 (after! rustic
   (load! "lang/rust.el"))
