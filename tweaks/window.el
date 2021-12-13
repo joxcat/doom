@@ -33,3 +33,13 @@
   (setq mini-frame-show-parameters '((top . 0.5)
                                      (width . 0.7)
                                      (left . 0.5))))
+;; Usefull views
+(use-package! ivy-view
+  :defer t
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-views
+        '(("code + term vert {}"
+           (vert
+            (buffer "*scratch*")
+            (buffer "vterm"))))))
