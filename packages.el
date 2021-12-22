@@ -55,6 +55,7 @@
 
 ;; (unpin! org-mode)
 (unpin! lsp-mode)
+(unpin! lsp-ui)
 (unpin! rustic)
 
 ;; To install a package directly from a remote git repo, you must specify a

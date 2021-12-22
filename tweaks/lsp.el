@@ -26,7 +26,7 @@
   :defer t
   :commands lsp-ui-mode
   :config
-  (setq lsp-ui-doc-enable t)
+  (setq lsp-ui-doc-enable nil)
   (setq lsp-ui-doc-header nil)
   (setq lsp-ui-doc-signature nil)
   (setq lsp-ui-doc-position 'at-point)
@@ -34,8 +34,13 @@
   (setq lsp-ui-doc-use-childframe t)
   (setq lsp-ui-doc-show-with-cursor t)
   (setq lsp-ui-doc-show-with-mouse nil)
-  (setq lsp-ui-peek-enable t)
-  (setq lsp-ui-peek-always-show t)
-  (setq lsp-ui-sideline-enable nil)
-  (setq lsp-ui-sideline-show-hover nil)
-  (setq lsp-ui-sideline-show-diagnostics nil))
+  (setq lsp-ui-doc-enhanced-markdown t)
+  (setq lsp-ui-peek-enable nil)
+  (setq lsp-ui-peek-always-show nil)
+  (setq lsp-ui-imenu-enable t)
+  (setq lsp-ui-imenu-kind-position 'left)
+  (setq lsp-ui-imenu-auto-refresh 'after-save)
+  (setq lsp-ui-sideline-enable t)
+  (setq lsp-ui-sideline-delay 0.2)
+  (setq lsp-ui-sideline-show-hover t)
+  (setq lsp-ui-sideline-show-diagnostics t))

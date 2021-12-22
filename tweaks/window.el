@@ -42,4 +42,15 @@
         '(("code + term vert {}"
            (vert
             (buffer "*scratch*")
-            (buffer "vterm"))))))
+            (buffer "vterm")))
+          ("treemacs + code hori {}"
+           (horz
+            (buffer "treemacs")
+            (buffer "*scratch*"))))))
+
+(use-package! treemacs
+  :defer t
+  :config
+  (setq treemacs-width 30)
+  (setq treemacs-wide-toggle-width 60)
+  (setq treemacs-show-hidden-files nil))

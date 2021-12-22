@@ -20,7 +20,7 @@
   (setq lsp-rust-analyzer-server-display-inlay-hints t)
   (setq lsp-rust-analyzer-cargo-watch-enable t)
   (setq lsp-rust-analyzer-proc-macro-enable t)
-  (setq lsp-rust-analyzer-rustfmt-extra-args '("--edition" "2021")))
+  (setq lsp-rust-analyzer-rustfmt-extra-args ["--edition=2021"]))
 
 ;; (defun inlay-hints-on ()
 ;;   (lsp-rust-analyzer-inlay-hints-mode +1))
