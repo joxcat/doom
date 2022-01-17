@@ -56,6 +56,9 @@
 ;; Justfile > Makefile change my mind
 (package! just-mode)
 
+;; Racket scribble files
+;; (package! scribble-mode :recipe (:host github :repo "emacs-pe/scribble-mode"))
+
 ;; (unpin! org-mode)
 (unpin! lsp-mode)
 (unpin! lsp-ui)
