@@ -54,3 +54,10 @@
   (setq treemacs-width 30)
   (setq treemacs-wide-toggle-width 60)
   (setq treemacs-show-hidden-files nil))
+
+(use-package! centaur-tabs
+  :defer t
+  :config
+  (map! :map centaur-tabs-mode-map
+        :n "C-x <left>" #'centaur-tabs-backward
+        :n "C-x <right>" #'centaur-tabs-forward))
