@@ -24,15 +24,6 @@
       "C-<up>"         #'+evil/window-move-up
       "C-<right>"      #'+evil/window-move-right)
 
-(use-package! mini-frame
-  :hook (after-init . mini-frame-mode)
-  :config
-  (setq mini-frame-handle-completions nil)
-  (setq mini-frame-create-lazy t)
-  (setq mini-frame-resize t)
-  (setq mini-frame-show-parameters '((top . 0.5)
-                                     (width . 0.7)
-                                     (left . 0.5))))
 ;; Usefull views
 (use-package! ivy-view
   :defer t

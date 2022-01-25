@@ -9,8 +9,16 @@
   (company-show-numbers t)
   (company-minimum-prefix-length 2)
   :config
-  (global-company-mode)
-  (setq company-tooltip-align-annotations t))
+  (setq company-tooltip-align-annotations t)
+  (global-company-mode))
+
+(use-package! company-lsp
+  :defer t
+  :custom
+  (company-lsp-cache-candidates t)
+  (company-lsp-async t)
+  (company-lsp-enable-snippets nil)
+  (company-lsp-enable-recompletion t))
 
 ;; (use-package! flycheck
 ;;   :config
@@ -25,13 +33,16 @@
   :defer t
   :config (ivy-prescient-mode))
 
-;; (use-package! ivy-postframe
-;;   :defer t
-;;   :config
-;;   (setq ivy-posframe-hide-minibuffer t)
-;;   (setq ivy-posframe-parameters '((left-fringe . 5) (right-fringe . 5)))
-;;   (setq ivy-posframe-display-functions-alist '(t . ivy-posframe-display-at-frame-center))
-;;   (ivy-postframe-mode))
+(use-package! ivy-posframe
+  :config
+  (setq ivy-posframe-hide-minibuffer t)
+  (setq ivy-posframe-width 70)
+  (setq ivy-posframe-parameters '(
+        (left-fringe . 5)
+        (right-fringe . 5)))
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+  (setq ivy-posframe-border-width 1)
+  (ivy-posframe-mode 0))
 
 (use-package! company-prescient
   :defer t

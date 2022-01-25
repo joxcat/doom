@@ -50,9 +50,6 @@
 ;; (package! tree-sitter)
 ;; (package! tree-sitter-langs)
 
-;; mini-buffer in postframe <3
-(package! mini-frame :recipe (:host github :repo "muffinmad/emacs-mini-frame"))
-
 ;; Justfile > Makefile change my mind
 (package! just-mode)
 
