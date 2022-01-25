@@ -17,7 +17,7 @@
 ;; Benchmark @NOTE disable if not benchmarking
 ;; (when doom-debug-p
 ;;   (require 'benchmark-init)
-;;   (add-hook 'doom-first-input-hook #'benchmark-init/deactivate))
+;;   (add-hook! 'doom-first-input-hook #'benchmark-init/deactivate))
 
 (doom! :input
        ;;chinese
@@ -111,7 +111,7 @@
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
-       (:if IS-MAC macos)  ; improve compatibility with macOS
+       ;; (:if IS-MAC macos)  ; improve compatibility with macOS
        tty               ; improve the terminal Emacs experience
 
        :lang
@@ -151,7 +151,7 @@
        ;;(nim +lsp)        ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +gnuplot +pandoc +jupyter)                 ; organize your plain life in plain text +pretty
+       (org +gnuplot +pandoc +jupyter +dragndrop +roam2)                 ; organize your plain life in plain text +pretty
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional

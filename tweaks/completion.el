@@ -20,11 +20,6 @@
   (company-lsp-enable-snippets nil)
   (company-lsp-enable-recompletion t))
 
-;; (use-package! flycheck
-;;   :config
-;;   ;; (global-flycheck-mode)
-;;   (setq flycheck-check-syntax-automatically t))
-
 (use-package! prescient
   :defer t
   :config (prescient-persist-mode))
@@ -34,6 +29,7 @@
   :config (ivy-prescient-mode))
 
 (use-package! ivy-posframe
+  :defer t
   :config
   (setq ivy-posframe-hide-minibuffer t)
   (setq ivy-posframe-width 70)

@@ -102,4 +102,4 @@
 ;(unpin! t)
 
 ;; Benchmark @NOTE disable if not benchmarking
-;; (package! benchmark-init)
+;; (package! benchmark-init :recipe (:host github :repo "joxcat/benchmark-init-el"))
