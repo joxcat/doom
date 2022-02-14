@@ -56,7 +56,37 @@
 ;; Racket scribble files
 ;; (package! scribble-mode :recipe (:host github :repo "emacs-pe/scribble-mode"))
 
-;; (unpin! org-mode)
+;; Hy lang
+(when (package! hy-mode)
+  ;; Installing hy-lsp
+  (with-temp-buffer
+    (if (equal 1 (call-process-shell-command "pip3 show hy"))
+        (let ((cmd-res (list
+                        :exit-code (call-process-shell-command "pip3 install --user hy" nil t)
+                        :output (buffer-string))))
+          (if (equal 1 (plist-get cmd-res :exit-code))
+              (with-output-to-temp-buffer "*hy-setup*"
+                (princ (plist-get cmd-res :output)))))))
+
+  (with-temp-buffer
+    (if (equal 1 (call-process-shell-command "pip3 show jedhy"))
+        (let ((cmd-res (list
+                        :exit-code (call-process-shell-command "pip3 install --user jedhy" nil t)
+                        :output (buffer-string))))
+          (if (equal 1 (plist-get cmd-res :exit-code))
+              (with-output-to-temp-buffer "*hy-setup*"
+                (princ (plist-get cmd-res :output)))))))
+
+  (with-temp-buffer
+    (if (equal 1 (call-process-shell-command "pip3 show hy-language-server"))
+        (let ((cmd-res (list
+                        :exit-code (call-process-shell-command "pip3 install --user hy-language-server" nil t)
+                        :output (buffer-string))))
+          (if (equal 1 (plist-get cmd-res :exit-code))
+              (with-output-to-temp-buffer "*hy-setup*"
+                (princ (plist-get cmd-res :output))))))))
+
+(unpin! org-mode)
 (unpin! lsp-mode)
 (unpin! lsp-ui)
 (unpin! rustic)

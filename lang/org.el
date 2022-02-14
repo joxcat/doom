@@ -19,10 +19,21 @@
 
 (use-package! org-roam
   :defer t
-  :config
-  (setq! org-roam-directory "~/Sync/org-notes"
+  :bind (("C-c n i" . org-roam-node-insert)
+         ("C-c n b" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n d" . org-roam-dailies-find-today))
+  :init
+  (setq! org-roam-db-location "~/Sync/org-notes/org-roam.db"
+         org-roam-directory "~/Sync/org-notes"
          org-roam-dailies-directory "journals/"
          org-roam-capture-templates
          '(("d" "default" plain
-            #'org-roam-capture--get-point "%?"
-            :file-name "pages/${slug}" :head "#+title: ${title}\n" :unnarrowed t))))
+            "%?" :target
+            (file+head "pages/${slug}.org" "#+title: ${title}\n")))
+         org-roam-dailies-capture-templates
+         '(("d" "default" entry
+            "* %?" :target
+            (file+head "%<%Y_%m_%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+  :config
+  (setq! org-return-follows-link t))

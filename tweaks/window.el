@@ -52,5 +52,5 @@
   :defer t
   :config
   (map! :map centaur-tabs-mode-map
-        :n "C-x <left>" #'centaur-tabs-backward
-        :n "C-x <right>" #'centaur-tabs-forward))
+        "C-x <left>" #'centaur-tabs-backward-tab
+        "C-x <right>" #'centaur-tabs-forward-tab))

@@ -14,6 +14,7 @@
               ("C-c C-c s" . lsp-rust-analyzer-status))
   :config
   (setq! rustic-format-trigger 'on-save
+         rustic-rustfmt-args "--edition=2021"
          rustic-analyzer-command '("~/.cargo/bin/rust-analyzer")))
 
 (use-package! lsp-rust
