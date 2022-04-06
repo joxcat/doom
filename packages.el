@@ -86,7 +86,7 @@
               (with-output-to-temp-buffer "*hy-setup*"
                 (princ (plist-get cmd-res :output))))))))
 
-(unpin! org-mode)
+;; (unpin! org-mode)
 (unpin! lsp-mode)
 (unpin! lsp-ui)
 (unpin! rustic)
