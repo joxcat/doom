@@ -88,6 +88,9 @@
   (load! "lang/mint.el"))
 (load! "lang/env.el")
 
+(after! hy-mode
+  (load! "lang/hy.el"))
+
 (load! "tweaks/better-defaults.el")
 (load! "tweaks/lsp.el")
 (load! "tweaks/git.el")
