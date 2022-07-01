@@ -14,7 +14,7 @@
     ("~" (:foreground "RoyalBlue1"))
     ("+" (:strike-through t :foreground "gray30"))))
 
-(setq org-hide-block-startup t)
+;; (setq org-hide-block-startup t)
 ;; (setq org-hide-emphasis-markers t)
 
 (use-package! org-roam
