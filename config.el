@@ -35,7 +35,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-fairy-floss)
+(setq doom-theme 'catppuccin)
+;; (setq doom-theme 'doom-fairy-floss)
 ;; (setq doom-theme 'doom-vibrant)
 
 ;; Doom vibrant custom settings
@@ -99,6 +100,9 @@
 (load! "tweaks/window.el")
 (load! "tweaks/tree-sitter.el")
 (load! "tweaks/gadgets.el")
+
+(after! org-modern
+  (load! "tweaks/org-modern.el"))
 
 (if (eq system-type 'darwin)
     (load! "tweaks/osx.el"))

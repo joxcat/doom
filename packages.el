@@ -56,6 +56,12 @@
 ;; Racket scribble files
 ;; (package! scribble-mode :recipe (:host github :repo "emacs-pe/scribble-mode"))
 
+(package! catppuccin 
+  :recipe (:host github
+           :repo "catppuccin/emacs"))
+
+(package! org-modern)
+
 ;; Hy lang
 (when (package! hy-mode)
   ;; Installing hy-lsp
